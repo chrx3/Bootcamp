@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> {% block title %}Registrate {% endblock %}</title>
+
+    <!-- estilos -->
+    <style>
+        body {
+            font-family: Arial;
+          }
+    
+        input {
+            float: left;
+            width: 200px;
+            margin-bottom: 10px;
+        }
+    
+        label {
+            clear: both;
+            float: left;
+            width: 180px;
+        }
+    
+        button {
+            clear: both;
+            float: left;
+            width: 50px;
+        }
+    
+        .error-control {
+            border: 1px solid red;
+        }
+    
+        label.error {
+            color: red;
+            width: 100%;
+            font-size: 0.8em;
+            margin-top: -5px;
+            margin-bottom: 10px;
+        }
+        
+        #caja{
+            margin-top:50px;
+            margin-left:20px;
+       
+        }
+    
+    
+    </style>
+    <script>
+
+        $(function() 
+        {
+          $("#mi-formulario").validate({
+               rules: {
+                      correo: {
+                          required: true,
+                          email: true
+                      },
+                      pass: "required",
+                      fono: "required",
+                      fecha: "required",
+                      pass2: {
+                          required: true,
+                          equalTo: "#pass"
+                      }   
+                      
+                  }, //rules
+              messages: {
+                  correo: {
+                      required: 'Ingresa tu correo electronico',
+                      email: 'Formato de correo no valido'
+                  },
+                  pass: {
+                      required: 'Ingresa una contraseña',
+                  },
+                  fono:{
+                      required: 'Ingrese un numero de celular',
+                  },
+                  fecha:{
+                      required: 'Seleccione una fecha valida',
+                  },
+                  pass2: {
+                      required: 'Reingresa la contraseña',
+                      equalTo: 'Las contraseñas ingresadas no coinciden',
+  
+                  }
+              }//messages
+          }); //$('#mi-formulario').validate
+      }); //function
+  
+  
+    </script>
+</head>
+
+<body>
+    {% block content %}
+    {% load static %}
+    
+    <div class="container-fluid">
+        
+        <h1>Comunicate con nosotros</h1>
+        <form id="mi-formulario" action="#" method="post">
+            <div class="form-group">
+                <label for="correo">Correo electronico: </label>
+                <input type="text" class="form-control" name="correo" id="correo" required placeholder="Digite su correo">
+
+            </div>
+            <div class="form-group">
+                <label for="fono">Telefono: </label>
+                <input type="number" class="form-control" name="fono" id="fono" required placeholder="Digite su telefono">
+            </div>
+            <div class="form-group">
+                <label for="fono">Fecha de nacimiento: </label>
+                <input type="date" class="form-control" name="fecha" id="fecha" required>
+            </div>
+            <div class="form-group">
+                <label for="fono">Contraseña: </label>
+                <input type="password" class="form-control" name="pass" id="pass" required placeholder="Digite su Contraseña">
+            </div>
+            <div class="form-group">
+                <label for="fono">Reingrese Contraseña: </label>
+                <input type="password" class="form-control" name="pass2" id="pass2" required placeholder="Reingrese su contraseña">
+            </div>
+            <br><br>
+            <input type="submit" value="Enviar" class="btn btn-primary ">
+        </form>
+    </div>
+    
+    {% endblock %}
+</body>
+</html>

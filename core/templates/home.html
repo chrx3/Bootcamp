@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Bootcamp {% endblock %}</title>
+    
+</head>
+
+<body>
+    {% block content %}
+    {% load static %}
+    <div class="container-fluid">
+        <!-- barra de navegacion -->
+        
+
+        <!-- carrusel -->
+        <div id="carousel1" class="carousel slide" data-slide="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carousel1" data-slide="0" class="active"></li>
+                <li data-target="#carousel1" data-slide="1" ></li>
+                <li data-target="#carousel1" data-slide="2" ></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <a href="#"><img class="d-block w-100" src="{% static 'img/foto1.jpg' %}" width="300px" height="300px"></a>
+                    <div class="carousel-caption">
+                        <h3> Auto 1</h3>
+                        <p>Descripcion del autito</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <a href="#"><img class="d-block w-100" src="{% static 'img/foto2.jpg' %}" width="300px" height="300px"></a>
+                    <div class="carousel-caption">
+                        <h3> Auto 2</h3>
+                        <p>Descripcion del autito</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <a href="#"><img class="d-block w-100" src="{% static 'img/a.jpg' %}" width="300px" height="300px"></a>
+                    <div class="carousel-caption">
+                        <h3> Auto 3</h3>
+                        <p>Descripcion del autito</p>
+                    </div>
+                </div>
+
+                <a class="carousel-control-prev" href="#carousel1" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+
+                <a class="carousel-control-next" href="#carousel1" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+        <br><br>
+
+        <!-- Tarjetas -->
+        <div class="row">
+            <div class="col-md">
+                <div class="card">
+                    <img class="card-img-top" src=" {% static 'img/a.jpg' %}">
+                    <div class="card-body">
+                        <h4 class="card-title">Wenamechuindesama</h4>
+                        <p class="card-text">Wenmahartvisoun</p>
+                        <a href="#" class="btn btn-primary">Go a</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="{% static 'img/foto1.jpg' %}">
+                    <div class="card-body">
+                        <h4 class="card-title">Auto</h4>
+                        <p class="card-text">Lorem, ipsum dolor.</p>
+                        <a href="#" class="btn btn-primary">Go a</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Mostrar vehiculos {% endblock %}</title>
+</head>
+
+<body>
+    {% block content %}
+    {% load static %}
+   <div class="container-fluid">
+
+        <hr>
+        <h2>Mostrando vehiculos</h2>
+        {% if user.is_authenticated %}
+        <a href="{%url 'form_vehiculo'%}" class="btn btn-primary">Agregar vehiculo</a>
+        {% endif %}
+        <br>
+        <table class="table">
+            <thead>
+                <th>Patente</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Modificar</th>
+                <th>Eliminar</th>
+            </thead>
+            <tbody>
+                {% for ve in vehiculos %}
+                    <tr>
+                        <td>{{ve.patente}}</td>
+                        <td>{{ve.marca}}</td>
+                        <td>{{ve.modelo}}</td>
+                        {% if user.is_authenticated  %}
+                            <td><a href="{% url 'form_modvehiculo' ve.patente%}" class="btn btn-primary">Modificar</a></td>
+                            <td><a href="{% url 'form_delvehiculo' ve.patente %}" class="btn btn-danger">Eliminar</a></td>
+                        {% else %}
+                            <td><a href="#" style="color: red;" >No tiene permisos</a></td>
+                            <td><a href="#" style="color: red;">No tiene permisos</a></td>
+                        {% endif %}
+                    </tr>
+                {%endfor%}
+
+
+            </tbody>
+        </table>
+
+
+
+   </div> 
+   {% endblock %}
+</body>
+</html>

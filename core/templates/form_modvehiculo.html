@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> {% block title %} Creando vehiculo{% endblock %}</title>
+
+</head>
+
+<body>
+    {% block content %}
+    {% load static %}
+    <div class="container-fluid">
+
+        <div class="row">
+            <h2>Modificando Datos</h2>
+        </div>
+        <div class="container-fluid">
+            <form action="#" method="POST" id="formulario">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.patente.label }}
+                    {{ form.patente}}
+
+                </div>
+    
+                <div class="form-group">
+                    {{ form.marca.label }}
+                    {{ form.marca}}
+
+                </div>
+                <div class="form-group">
+                    {{ form.modelo.label }}
+                    {{ form.modelo}}
+
+                </div>
+                <div class="form-group">
+                    {{ form.categoria.label }}
+                    {{ form.categoria}}
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md">
+                        <input type="submit" class="btn btn-primary" value="Enviar" id="Enviar">
+                        <input type="reset" class="btn btn-primary" value="Limpiar" id="Limpiar">
+                        
+                    </div>
+                </div>
+                
+            </form>
+            
+    </div>
+
+    {% endblock %}
+</body>
+</html>
