@@ -69,3 +69,22 @@ def form_cliente(request):
     else:
         cliente_form = ClienteForm()
     return render(request, 'form_cliente.html', {'cliente_form': cliente_form})  
+
+
+def form_modcliente(request, id):
+    cliente = Cliente.objects.get(idCliente=id)
+
+    datos={
+        'cliente_form': ClienteForm(instance=cliente)
+    }
+    if request.method == 'POST':
+        formulario = ClienteForm(data = request.POST, instance = cliente)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect ('cliente')
+    return render(request, 'form_modcliente.html', datos)
+
+def form_delcliente(request, id):
+    cliente = Cliente.objects.get(idCliente = id)
+    cliente.delete()
+    return redirect ('cliente')
