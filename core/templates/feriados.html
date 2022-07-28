@@ -1,0 +1,47 @@
+{%extends 'base.html'%}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Feriados 2022 {% endblock %}</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <script>
+        $(document).ready(function(){
+            $("#enviar").click(function(){
+                $.get("https://apis.digital.gob.cl/fl/feriados/2022",function(data){
+
+                    $.each(data, function(i, item){
+                        $("#feriados").append("<tr><td>" + item.nombre +"</td><td>" + item.comentarios + "</td>" +
+                            "<td>"  + item.irrenunciable + "</td><td>" + item.tipo + "</td></tr>")
+                    });
+                });
+            });
+        });
+
+    </script>
+</head>
+<body>
+    {% block content %}
+        {% load static %}
+        <div class="container-fluid">
+            <hr>
+            <h2>Mostrando feriados</h2>
+            <br>
+            <button type="button" id="enviar" class="btn btn-primary">Cargando Datos</button>
+            <br>
+            <table class="table" id="feriados">
+                <thead>
+                    <th>Nombre</th>
+                    <th>Fecha</th>
+                    <th>Irrenunciable</th>
+                    <th>Tipo</th>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    {% endblock %}
+</body>

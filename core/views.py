@@ -12,6 +12,8 @@ def home(request):
 def registrate(request):
     return render(request, 'registrate.html')    
 
+def feriados(request):
+    return render(request, 'feriados.html')
 
 def mostrar(request):
     vehiculos = Vehiculo.objects.all() #similar al select

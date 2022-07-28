@@ -17,7 +17,7 @@
         </div>
         <div class="container-fluid">
         {% if user.is_authenticated %}
-            <form action="#" method="POST" id="formulario">
+            <form action="#" method="POST" id="form-vehiculo">
                 {% csrf_token %}
                 <div class="form-group">
                     {{ vehiculo_form.patente.label }}

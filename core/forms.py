@@ -1,13 +1,15 @@
+from genericpath import exists
 from django import forms
 from django.forms import ModelForm
 from django.forms import widgets
 from django.forms.models import ModelChoiceField
 from django.forms.widgets import Widget
 from .models import Categoria, Vehiculo, Cliente
+from django.forms import ValidationError
 
 
 class VehiculoForm(forms.ModelForm):
-
+ 
     class Meta: 
         model= Vehiculo
         fields = ['patente', 'marca', 'modelo', 'categoria']
@@ -45,8 +47,14 @@ class VehiculoForm(forms.ModelForm):
                     'id': 'categoria',
                 }
             )
-
         }
+        def clean_patente(self):
+            patente = self.cleaned_data.get("patente")
+
+            if Vehiculo.objects.filter(patente=patente).exists():
+                raise ValidationError("Esta patente ya existe")
+                
+            return patente
 
 class ClienteForm(forms.ModelForm):
 
